@@ -124,8 +124,10 @@ static unsigned long long ntohll(unsigned long long v) {
                     [unmaskedData appendBytes:&c length:1];
                 }
 
+                NSData *rangedData = [unmaskedData subdataWithRange:NSMakeRange(0, data.length - 4)];
+                
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [_delegate webSocketServer:self didReceiveData:unmaskedData fromConnection:connection];
+                    [_delegate webSocketServer:self didReceiveData:rangedData fromConnection:connection];
                 }];
 
                 [connection readDataToLength:2 withTimeout:-1 buffer:nil bufferOffset:0 tag:4];
