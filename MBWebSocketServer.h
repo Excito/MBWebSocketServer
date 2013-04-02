@@ -22,6 +22,8 @@
 // JSON string before calling [NSString webSocketFrameData].
 - (void)send:(id)object;
 
+-(void)disconnect;
+
 @property (nonatomic, readonly) NSUInteger port;
 @property (nonatomic, weak) id<MBWebSocketServerDelegate> delegate;
 @property (nonatomic, readonly) BOOL connected;
