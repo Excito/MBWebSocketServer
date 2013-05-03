@@ -56,7 +56,9 @@ static unsigned long long ntohll(unsigned long long v) {
 
 -(void)disconnect
 {
-    [connections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSArray *tmpConnections = [NSArray arrayWithArray:connections];
+    
+    [tmpConnections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         GCDAsyncSocket *connection = (GCDAsyncSocket*) obj;
         [connection disconnect];
     }];
